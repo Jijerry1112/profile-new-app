@@ -1,0 +1,49 @@
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* top section (image) */
+.profile-card .top {
+  background-color: #f7f7f7;
+  padding: 1.25rem;
+}
+
+.profile-card .top img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* bottom section (text) */
+.profile-card .bottom {
+  padding: 0.75rem 1rem 1.25rem;
+}
+
+.profile-card .bottom p {
+  margin: 0.25rem 0;
+}
+
+.profile-card .bottom p:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.profile-card .bottom p:last-child {
+  font-size: 0.85rem;
+  color: #666;
+}
