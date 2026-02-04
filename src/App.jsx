@@ -7,22 +7,30 @@ import Wrapper from "./components/Wrapper";
 import Filters from "./components/Filters";
 import Navbar from './components/Navbar';
 import About  from './components/About';
-import Card from './components/Card';
+import Card from "./components/Card";
+import AddProfileForm from "./components/AddProfileForm";
 import { useState } from 'react';
 import './App.css'
 
+
+
 function App() {
-  const profiles =[
-    {id: 0, name: "Soyo", title: "bass", image: soyo},
-    {id: 1, name: "Tomori", title: "singer", image: tomori},
-    {id: 2, name: "Anon", title: "guitar", image: anon},
-    {id: 3, name: "Taki", title: "drum", image: taki},
-    {id: 4, name: "Raana", title: "guitar", image: raana},
-  ];
+
+  const [profiles, setProfiles] = useState([
+    { id: 0, name: "Soyo", title: "bass", email:"", bio:"", image: soyo },
+    { id: 1, name: "Tomori", title: "singer", email:"", bio:"", image: tomori },
+    { id: 2, name: "Anon", title: "guitar", email:"", bio:"", image: anon },
+    { id: 3, name: "Taki", title: "drum", email:"", bio:"", image: taki },
+    { id: 4, name: "Raana", title: "guitar", email:"", bio:"", image: raana },
+  ]);
+
   const titles = [...new Set(profiles.map((profile) => profile.title))];
+  const [mode, setMode] = useState("light");
+  const toggleMode = () => setMode((m) => (m === "light" ? "dark" : "light"));
+
+
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
-    setClicked((prev)=> !prev);
     setClicked((prev)=> !prev);
     console.log(clicked);
   };
@@ -38,6 +46,9 @@ function App() {
     setTitle("");
     setName("");
   };
+  const updateProfiles = (profile) =>{
+    setProfiles(pre => ([...pre, profile]))
+  }
 
  const filteredProfiles = profiles.filter(
     (profile) =>
@@ -49,9 +60,15 @@ function App() {
       <Navbar />
       <Wrapper id="about">
         <About />
+        <button onClick={toggleMode}>
+          Mode: {mode === "light" ? "Light" : "Dark"}
+        </button>
         <button onClick={handleClick}>
           {clicked ? "Clicked" : "Click me"}
         </button>
+      </Wrapper>
+      <Wrapper id="add-profile">
+        <AddProfileForm onAddProfile={updateProfiles}/>
       </Wrapper>
       <Wrapper id="profiles">
         <Filters
@@ -70,6 +87,7 @@ function App() {
                 name={profile.name}
                 title={profile.title}
                 image={profile.image}
+                mode={mode}
               />
             ))
           ) : (

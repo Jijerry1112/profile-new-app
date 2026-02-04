@@ -47,3 +47,28 @@
   font-size: 0.85rem;
   color: #666;
 }
+
+.light {
+  background-color: #ffffff;
+}
+
+.dark {
+  background-color: #1f1f1f;
+  color: #eaeaea;
+}
+
+.dark .top {
+  background-color: #2a2a2a;
+}
+
+.dark .bottom p:last-child {
+  color: #aaa;
+}
+
+.dark .bottom p:first-child {
+  color: #ffffff;
+}
+
+.dark .bottom p:last-child {
+  color: #bbbbbb;
+}
