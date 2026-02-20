@@ -1,7 +1,11 @@
 import styles from "../styles/navbar.module.css";
 import { Link } from "react-router-dom";
+import { useContext} from "react";
+import ModeContext from "../context/ModeContext"
 
-const Navbar = ({ theme, toggleTheme }) => {
+const Navbar = () => {
+
+  const {theme, toggleTheme} = useContext(ModeContext)
   return (
     <nav className={styles.navbar}>
       <ul>

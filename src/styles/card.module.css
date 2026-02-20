@@ -1,25 +1,24 @@
-.profile-card {
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
+.profileCard {
+  background-color: var(--primary-background-color);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   overflow: hidden;
   text-align: center;
-
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.profile-card:hover {
+.profileCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* top section (image) */
-.profile-card .top {
-  background-color: #f7f7f7;
+/* top section (image area) */
+.top {
+  background-color: var(--gray-background-color);
   padding: 1.25rem;
 }
 
-.profile-card .top img {
+.top img {
   width: 120px;
   height: 120px;
   object-fit: cover;
@@ -28,47 +27,25 @@
   margin: 0 auto;
 }
 
-/* bottom section (text) */
-.profile-card .bottom {
+/* bottom section (text area) */
+.bottom {
   padding: 0.75rem 1rem 1.25rem;
 }
 
-.profile-card .bottom p {
+.bottom p {
   margin: 0.25rem 0;
 }
 
-.profile-card .bottom p:first-child {
+/* name */
+.bottom p:first-child {
   font-size: 1rem;
   font-weight: 600;
-  color: #222;
+  color: var(--text-color);
 }
 
-.profile-card .bottom p:last-child {
+/* title */
+.bottom p:last-child {
   font-size: 0.85rem;
-  color: #666;
-}
-
-.light {
-  background-color: #ffffff;
-}
-
-.dark {
-  background-color: #1f1f1f;
-  color: #eaeaea;
-}
-
-.dark .top {
-  background-color: #2a2a2a;
-}
-
-.dark .bottom p:last-child {
-  color: #aaa;
-}
-
-.dark .bottom p:first-child {
-  color: #ffffff;
-}
-
-.dark .bottom p:last-child {
-  color: #bbbbbb;
+  color: var(--text-color);
+  opacity: 0.75;
 }

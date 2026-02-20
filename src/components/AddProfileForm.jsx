@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/addProfileForm.module.css"
+import { useNavigate } from "react-router-dom"
 
 const stripTags = (s) => String(s ?? "").replace(/<\/?[^>]+>/g, "");
 const trimCollapse = (s) =>
@@ -20,6 +21,7 @@ const AddProfileForm = ({ onAddProfile }) => {
   const [success, setSuccess] = useState(false);
 
   const { name, title, email, bio, image } = values;
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,6 +69,7 @@ const AddProfileForm = ({ onAddProfile }) => {
       setSuccess("Form is submitted susccesfully");
       setTimeout(() => {
         setSuccess("");
+        navigate("/")
       }, 1000);
     } catch (error) {
       setError(error.message);
@@ -85,7 +88,6 @@ const AddProfileForm = ({ onAddProfile }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles["add-profile"]}>
-        <h2>Add a profile</h2>
       <label htmlFor="name">Name</label>
       <input
         id="name"
