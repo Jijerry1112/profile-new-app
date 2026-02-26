@@ -1,20 +1,30 @@
+import { useMemo, useContext } from "react";
 import Card from "../components/Card";
 import Wrapper from "../components/Wrapper";
 import Filters from "../components/Filters";
-
-import { useContext } from "react";
 import ProfileContext from "../context/ProfileContext";
 
-function HomePage({ handleChangeTitle, handleSearch, handleClear, title, name }) {
+function HomePage({
+  handleChangeTitle,
+  handleSearch,
+  handleClear,
+  title,
+  name,
+}) {
   const { profiles } = useContext(ProfileContext);
 
-  const titles = [...new Set(profiles.map((profile) => profile.title))];
+  const titles = useMemo(() => {
+    return [...new Set(profiles.map((profile) => profile.title))];
+  }, [profiles]);
 
-  const filteredProfiles = profiles.filter(
-    (profile) =>
-      (profile.title === title || !title) &&
-      profile.name.toLowerCase().includes(name.toLowerCase())
-  );
+  const filteredProfiles = useMemo(() => {
+    const q = name.toLowerCase();
+    return profiles.filter(
+      (profile) =>
+        (profile.title === title || !title) &&
+        profile.name.toLowerCase().includes(q)
+    );
+  }, [profiles, title, name]);
 
   return (
     <Wrapper id="profiles">

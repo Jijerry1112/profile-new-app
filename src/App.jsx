@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
@@ -8,6 +8,7 @@ import FetchedProfilePage from "./pages/FetchedProfilePage";
 import AddProfilePage from "./pages/AddProfilePage";
 import ProfileDetailPage from "./pages/ProfileDetailPage";
 import ProfileLayoutPage from "./pages/ProfileLayoutPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import ModeContext from "./context/ModeContext";
 import "./App.css";
@@ -16,12 +17,18 @@ function App() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
 
-  const handleChangeTitle = (event) => setTitle(event.target.value);
-  const handleSearch = (event) => setName(event.target.value);
-  const handleClear = () => {
+  const handleChangeTitle = useCallback((event) => {
+    setTitle(event.target.value);
+  }, []);
+
+  const handleSearch = useCallback((event) => {
+    setName(event.target.value);
+  }, []);
+
+  const handleClear = useCallback(() => {
     setTitle("");
     setName("");
-  };
+  }, []);
 
   const { theme } = useContext(ModeContext);
 
@@ -48,6 +55,8 @@ function App() {
             <Route path=":id" element={<ProfileDetailPage />} />
           </Route>
           <Route path="/add-profile" element={<AddProfilePage />} />
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </HashRouter>

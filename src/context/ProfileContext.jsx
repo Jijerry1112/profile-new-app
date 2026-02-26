@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback, useMemo } from "react";
 
 import soyo from "../assets/soyo.webp";
 import tomori from "../assets/tomori.webp";
@@ -17,12 +17,16 @@ export const ProfileProvider = ({ children }) => {
     { id: 4, name: "Raana", title: "guitar", email: "", bio: "", image: raana },
   ]);
 
-  const addProfile = (profile) => {
+  const addProfile = useCallback((profile) => {
     setProfiles((prev) => [...prev, profile]);
-  };
+  }, []);
+
+  const value = useMemo(() => {
+    return { profiles, addProfile };
+  }, [profiles, addProfile]);
 
   return (
-    <ProfileContext.Provider value={{ profiles, addProfile }}>
+    <ProfileContext.Provider value={value}>
       {children}
     </ProfileContext.Provider>
   );
