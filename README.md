@@ -14,3 +14,9 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Lab 14
+I created two custom hooks: useProfiles and useProfileFiltering.
+useProfiles wraps useContext so components can access profile data more cleanly.
+useProfileFiltering computes the title list and filtered profiles based on the selected title and search input.
+HomePage uses both hooks to keep the component simpler and easier to maintain.
